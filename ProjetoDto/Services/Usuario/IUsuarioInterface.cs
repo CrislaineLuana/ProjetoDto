@@ -1,11 +1,12 @@
-﻿using ProjetoDto.Models;
+﻿using ProjetoDto.Dto;
+using ProjetoDto.Models;
 
 namespace ProjetoDto.Services.Usuario
 {
     public interface IUsuarioInterface
     {
 
-        List<UsuarioModel> CriarUsuario(UsuarioModel usuarioModel);
-        List<UsuarioModel> ListarUsuarios();
+        List<UsuarioListagemDto> CriarUsuario(UsuarioCriacaoDto usuarioModel);
+
     }
 }

@@ -1,9 +1,17 @@
-﻿using ProjetoDto.Models;
+﻿using AutoMapper;
+using ProjetoDto.Dto;
+using ProjetoDto.Models;
 
 namespace ProjetoDto.Services.Usuario
 {
     public class UsuarioService : IUsuarioInterface
     {
+
+        private readonly IMapper _mapper;
+        public UsuarioService(IMapper mapper)
+        {
+            _mapper = mapper;
+        }
 
         List<UsuarioModel> usuarios = new List<UsuarioModel>()
         {
@@ -47,20 +55,17 @@ namespace ProjetoDto.Services.Usuario
         };
 
 
-
-
-
-        public List<UsuarioModel> CriarUsuario(UsuarioModel usuarioModel)
+        public List<UsuarioListagemDto> CriarUsuario(UsuarioCriacaoDto usuarioModel)
         {
+            
+            var usuarioMapeado = _mapper.Map<UsuarioModel>(usuarioModel);
 
-            usuarioModel.Id = usuarios.Count() + 1;
-            usuarios.Add(usuarioModel);
-            return usuarios;
+            usuarioMapeado.Id = usuarios.Count + 1;
+
+            usuarios.Add(usuarioMapeado);
+
+            return _mapper.Map<List<UsuarioListagemDto>>(usuarios);
         }
 
-        public List<UsuarioModel> ListarUsuarios()
-        {
-            return usuarios;
-        }
     }
 }

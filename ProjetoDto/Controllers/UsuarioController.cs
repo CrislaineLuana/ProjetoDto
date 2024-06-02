@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using ProjetoDto.Dto;
 using ProjetoDto.Models;
 using ProjetoDto.Services.Usuario;
 
@@ -18,14 +19,9 @@ namespace ProjetoDto.Controllers
         }
 
 
-        [HttpGet]
-        public ActionResult<List<UsuarioModel>> ListarUsuarios()
-        {
-            return _usuarioInterface.ListarUsuarios();
-        }
-
+     
         [HttpPost]
-        public ActionResult<List<UsuarioModel>> CriarUsuario(UsuarioModel usuarioModel)
+        public ActionResult<List<UsuarioListagemDto>> CriarUsuario(UsuarioCriacaoDto usuarioModel)
         {
             return _usuarioInterface.CriarUsuario(usuarioModel);
         }
